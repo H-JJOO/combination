@@ -9,6 +9,7 @@ from pymongo import MongoClient
 client = MongoClient('mongodb+srv://test:sparta@cluster0.q15z7ue.mongodb.net/Cluster0?retryWrites=true&w=majority')
 db = client.dbsparta
 
+
 #홈페이지
 @app.route('/')
 def home():
@@ -51,6 +52,11 @@ def movie_post():
 def movie_get():
     movie_list = list(db.movies.find({}, {'_id': False}))
     return jsonify({'movies': movie_list})
+
+#영화 테스트
+@app.route('/marsPurchase/test')
+def test():
+    return render_template('test.html')
 
 #화성땅 공동구매
 @app.route('/marsPurchase')
